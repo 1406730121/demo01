@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf入门</title>
+</head>
+<body>
+<span th:text="Hello"></span>
+<hr/>
+<span th:text="${msg}"></span>
+<hr/>
+<input type="text" name="input" th:value="${msg}">
+<hr/>
+<span th:text="${#strings.isEmpty(msg)}"></span>
+<hr/>
+<span th:text="${#strings.contains(msg,'o')}"></span>
+<hr/>
+<span th:text="${#strings.startsWith(msg,'o')}"></span>
+<hr/>
+<span th:text="${#strings.endsWith(msg,'k')}"></span>
+<hr/>
+<span th:text="${#strings.indexOf(msg,'k')}"></span>
+<hr/>
+<span th:text="${#strings.length(msg)}"></span>
+<hr/>
+<span th:text="${#strings.substring(msg,1)}"></span>
+<hr/>
+<span th:text="${#strings.substring(msg,0,1)}"></span>
+<hr/>
+<span th:text="${#strings.toUpperCase(msg)}"></span>
+<hr/>
+<span th:text="${#strings.toLowerCase(msg)}"></span>
+<hr/>
+<span th:text="${#dates.format(date)}"></span>
+<hr/>
+<span th:text="${#dates.format(date,'yyyy-mm-dd')}"></span>
+<hr/>
+<span th:text="${#dates.year(date)}"></span>
+<hr/>
+<span th:text="${#dates.month(date)}"></span>
+<hr/>
+<span th:text="${#dates.day(date)}"></span>
+<hr/>
+<span th:if="${sex}=='1'">
+    男
+</span>
+<span th:if="${sex}=='0'">
+    女
+</span>
+<div th:switch="${sex}">
+   <span th:case="1">男</span>
+    <span th:case="0">女</span>
+</div>
+<hr/>
+<table>
+    <tr>
+        <td>name</td>
+        <td>age</td>
+        <td>sex</td>
+        <td>index</td>
+        <td>count</td>
+        <td>size</td>
+        <td>even</td>
+        <td>odd</td>
+        <td>first</td>
+        <td>last</td>
+    </tr>
+    <tr th:each="var,u:${userList}">
+        <td th:text="${var.name}"></td>
+        <td th:text="${var.age}"></td>
+        <td th:text="${var.sex}"></td>
+        <td th:text="${u.index}"></td>
+        <td th:text="${u.count}"></td>
+        <td th:text="${u.size}"></td>
+        <td th:text="${u.even}"></td>
+        <td th:text="${u.odd}"></td>
+        <td th:text="${u.first}"></td>
+        <td th:text="${u.last}"></td>
+    </tr>
+</table>
+<hr/>
+<table>
+    <tr>
+        <td>name</td>
+        <td>age</td>
+        <td>sex</td>
+    </tr>
+    <tr th:each="var : ${map}">
+        <td th:each="var1 : ${var}" th:text="${var1.value.name}"></td>
+        <td  th:each="var1 : ${var}" th:text="${var1.value.age}"></td>
+        <td  th:each="var1 : ${var}" th:text="${var1.value.sex}"></td>
+    </tr>
+</table>
+<hr/>
+<span th:text="${#httpServletRequest.getAttribute('request')}"></span>
+<hr/>
+<span th:text="${session.session}"></span>
+<hr/>
+<span th:text="${application.servletConterxt}"></span>
+<hr/>
+<a th:href="@{http://www.baidu.com}">百度1</a>
+<a th:href="@{/helloFtl}">模板1</a>
+<a th:href="@{/helloFtl(id=1,name=zhangsan)}">模板1</a>
+</body>
+</html>
